@@ -1,8 +1,9 @@
-﻿/*---------------------------------------------------------*/
-/* ----------------  Práctica 9                 -----------*/
-/*-----------------    2022-1   ---------------------------*/
-/*------------- Alumna:Sandoval Lara Lesly Mayte  ---------------*/
-/*------------- No. Cuenta:315021475 ---------------*/
+﻿/*------------------ PROYECTO FINAL ----------------
+	Integrantes:
+				-
+				-
+				- Sandoval Lara Lesly Mayte
+*/
 #include <Windows.h>
 
 #include <glad/glad.h>
@@ -190,47 +191,6 @@ void animate(void)
 		}
 	}
 
-	//Vehículo
-	if (animacion)
-	{
-		//para que el vehivulo pare en la distancia 200
-		if (estado == 0) {
-			//aquí controlo el movimiento del carro
-			//la variable animación el booleana y cambia cuando presionas el espacio.
-			movAuto_z -= 3.0f;
-			//girando llamtas
-			giroLlantas -= 6.5f;
-			if (movAuto_z <=-100.0f)
-				estado = 1;
-		}
-		if (estado == 1) {
-			movAuto_y += 2.0f;
-			if (movAuto_y >= 50.0f)
-				estado = 2;
-
-		}
-		if (estado == 2) {
-			movAuto_z += 2.0f;
-			giroLlantas += 6.5f;
-			if (movAuto_z >= 100.0f)
-				estado = 3;
-		}
-		if (estado == 3) {
-			movAuto_y -= 2.0f;
-			if (movAuto_y <= 0.0f)
-				estado = 4;
-		}
-		if (estado == 4) {
-			movAuto_z += 2.0f;
-			giroLlantas += 6.5f;
-			if (movAuto_z >= 170.0f)
-				estado = 5;
-		}
-		
-		
-		
-
-	}
 }
 
 void getResolution()
@@ -314,34 +274,11 @@ int main()
 	skyboxShader.setInt("skybox", 0);
 
 	// load models
-	// -----------
+	// -----------------------------------------
 	//modelos estaticos
 	Model piso("resources/objects/piso/piso.obj");
-	Model botaDer("resources/objects/Personaje/bota.obj");
-	Model piernaDer("resources/objects/Personaje/piernader.obj");
-	Model piernaIzq("resources/objects/Personaje/piernader.obj");
-	Model torso("resources/objects/Personaje/torso.obj");
-	Model brazoDer("resources/objects/Personaje/brazoder.obj");
-	Model brazoIzq("resources/objects/Personaje/brazoizq.obj");
-	Model cabeza("resources/objects/Personaje/cabeza.obj");
-	//tenemos divididas las llantas del carro
-	Model carro("resources/objects/lambo/carroceria.obj");
-	//las llantas dependen de la carroceria
-	Model llanta("resources/objects/lambo/Wheel.obj");
-	Model casaVieja("resources/objects/casa/OldHouse.obj");
-	//Model cubo("resources/objects/cubo/cube02.obj");
-	Model casaDoll("resources/objects/casa/DollHouse.obj");
-	//creando un nuevo modelo 
-	Model casaBrujas("resources/objects/CasaBrujas/CasaBrujas.obj");
-	//el obj manda a llamar a las imagsenes y mtl.porque aqui solo llamamos al obj
 	Model sillonU1("resources/objects/Sillon1/Sillon1.obj");
-	Model cubito("resources/objects/Cubo/cubito.obj");
-	//modelos con animación que ya estan  hechos desde el software de modelado
-	//ModelAnim animacionPersonaje("resources/objects/Personaje1/PersonajeBrazo.dae");
-	//animacionPersonaje.initShaders(animShader.ID);
-
-	//ModelAnim ninja("resources/objects/ZombieWalk/ZombieWalk.dae");
-	//ninja.initShaders(animShader.ID);
+	
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -409,9 +346,9 @@ int main()
 
 		//otra fuente de luz posicional en una posicion estatica
 		staticShader.setVec3("pointLight[1].position", glm::vec3(-80.0, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[1].ambient", glm::vec3(1.0f, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[1].diffuse", glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setVec3("pointLight[1].specular", glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setVec3("pointLight[1].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[1].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[1].specular", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setFloat("pointLight[1].constant", 1.0f);
 		staticShader.setFloat("pointLight[1].linear", 0.009f);
 		staticShader.setFloat("pointLight[1].quadratic", 0.0032f);
@@ -420,9 +357,9 @@ int main()
 		//si se agrega otra luz en el shader hay que poner el código de esta pero apagada si no se va usa
 
 		staticShader.setVec3("pointLight[2].position", glm::vec3(-120.0, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[2].ambient", glm::vec3(1.0f, 1.0f, 1.0f));
-		staticShader.setVec3("pointLight[2].diffuse", glm::vec3(0.0f, 0.0f, 1.0f));
-		staticShader.setVec3("pointLight[2].specular", glm::vec3(0.0f, 0.0f, 1.0f));
+		staticShader.setVec3("pointLight[2].ambient", glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[2].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[2].specular", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setFloat("pointLight[2].constant", 1.0f);
 		staticShader.setFloat("pointLight[2].linear", 0.009f);
 		staticShader.setFloat("pointLight[2].quadratic", 0.0032f);
@@ -431,8 +368,8 @@ int main()
 		//agregando cuarta luz con cambio de color
 		staticShader.setVec3("pointLight[3].position", glm::vec3(-180.0f, 0.0f, 80.0f));
 		staticShader.setVec3("pointLight[3].ambient", lightColor);
-		staticShader.setVec3("pointLight[3].diffuse", glm::vec3(0.0f, 0.0f, 1.0f));
-		staticShader.setVec3("pointLight[3].specular", glm::vec3(0.0f, 0.0f, 1.0f));
+		staticShader.setVec3("pointLight[3].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[3].specular", glm::vec3(0.0f, 0.0f, .0f));
 		staticShader.setFloat("pointLight[3].constant", 1.0f);
 		staticShader.setFloat("pointLight[3].linear", 0.009f);
 		staticShader.setFloat("pointLight[3].quadratic", 0.00032f);
@@ -453,48 +390,12 @@ int main()
 		
 
 		// -------------------------------------------------------------------------------------------------------------------------
-		// Personaje Animacion
-		// -------------------------------------------------------------------------------------------------------------------------
-		//Remember to activate the shader with the animation
-		animShader.use();
-		animShader.setMat4("projection", projection);
-		animShader.setMat4("view", view);
-	
-		animShader.setVec3("material.specular", glm::vec3(0.5f));
-		animShader.setFloat("material.shininess", 32.0f);
-		animShader.setVec3("light.ambient", ambientColor);
-		animShader.setVec3("light.diffuse", diffuseColor);
-		animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-		animShader.setVec3("light.direction", lightDirection);
-		animShader.setVec3("viewPos", camera.Position);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(1.2f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		animShader.setMat4("model", model);
-		//animacionPersonaje.Draw(animShader);
-
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Segundo Personaje Animacion
-		// -------------------------------------------------------------------------------------------------------------------------
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(40.3f, 1.75f, 0.3f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(0.5f));	// it's a bit too big for our scene, so scale it down
-		model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		animShader.setMat4("model", model);
-		//ninja.Draw(animShader);
-
-		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
-		//colocando la casita de brujas 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-180.0f, 0.0f, 20.0f));
-		model = glm::scale(model, glm::vec3(4.0f));
-		staticShader.setMat4("model", model);
-		casaBrujas.Draw(staticShader);
+		
 		//colocando el sillón
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-180.0f, 0.0f, 80.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
@@ -502,18 +403,7 @@ int main()
 		staticShader.setMat4("model", model);
 		sillonU1.Draw(staticShader);
 
-		//dibujando caja
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-200.0f, 20.0f, 100.0f));
-		model = glm::scale(model, glm::vec3(0.2f));
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, -1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		cubito.Draw(staticShader);
-
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(250.0f, 0.0f, -10.0f));
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		casaDoll.Draw(staticShader);
+		
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
@@ -521,115 +411,6 @@ int main()
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -70.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
-		staticShader.setMat4("model", model);
-		casaVieja.Draw(staticShader);
-
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Carro
-		// -------------------------------------------------------------------------------------------------------------------------
-		//cuando haces la rotacion también rotas el plano y afecta los ejes de referencia
-		model = glm::rotate(glm::mat4(1.0f), glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		//movAuto_x y z sirven para mover el auto junto con las llantas
-		model = glm::translate(model, glm::vec3(15.0f + movAuto_x, movAuto_y, movAuto_z));
-		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-		staticShader.setMat4("model", model);
-		carro.Draw(staticShader);
-
-		//manda a llamar 4 veces a las llantas 
-		model = glm::translate(tmp, glm::vec3(8.5f, 2.5f, 12.9f));
-		//haciendo el giro de las llantas para que gire en el eje de la X
-		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Izq delantera
-
-		model = glm::translate(tmp, glm::vec3(-8.5f, 2.5f, 12.9f));
-		//haciendo el giro de las llantas para que gire en el eje de la X
-		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Der delantera
-
-		model = glm::translate(tmp, glm::vec3(-8.5f, 2.5f, -14.5f));
-		//haciendo el giro de las llantas para que gire en el eje de la X
-		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Der trasera
-
-		model = glm::translate(tmp, glm::vec3(8.5f, 2.5f, -14.5f));
-		//haciendo el giro de las llantas para que gire en el eje de la X
-		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
-		staticShader.setMat4("model", model);
-		llanta.Draw(staticShader);	//Izq trase
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Personaje
-		// -------------------------------------------------------------------------------------------------------------------------
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
-		model = glm::translate(model, glm::vec3(posX, posY, posZ));
-		tmp = model = glm::rotate(model, glm::radians(giroMonito), glm::vec3(0.0f, 1.0f, 0.0));
-		staticShader.setMat4("model", model);
-		torso.Draw(staticShader);
-
-		//Pierna Der
-		model = glm::translate(tmp, glm::vec3(-0.5f, 0.0f, -0.1f));
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
-		model = glm::rotate(model, glm::radians(-rotRodIzq), glm::vec3(1.0f, 0.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		piernaDer.Draw(staticShader);
-
-		//Pie Der
-		model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		staticShader.setMat4("model", model);
-		botaDer.Draw(staticShader);
-
-		//Pierna Izq
-		model = glm::translate(tmp, glm::vec3(0.5f, 0.0f, -0.1f));
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		piernaIzq.Draw(staticShader);
-
-		//Pie Iz
-		model = glm::translate(model, glm::vec3(0, -0.9f, -0.2f));
-		staticShader.setMat4("model", model);
-		botaDer.Draw(staticShader);	//Izq trase
-
-		//Brazo derecho
-		model = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(-0.75f, 2.5f, 0));
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		brazoDer.Draw(staticShader);
-
-		//Brazo izquierdo
-		model = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		model = glm::translate(model, glm::vec3(0.75f, 2.5f, 0));
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-		staticShader.setMat4("model", model);
-		brazoIzq.Draw(staticShader);
-
-		//Cabeza
-		model = glm::translate(tmp, glm::vec3(0.0f, -1.0f, 0.0f));
-		model = glm::rotate(model, glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0));
-		model = glm::translate(model, glm::vec3(0.0f, 2.5f, 0));
-		staticShader.setMat4("model", model);
-		cabeza.Draw(staticShader);
-		// -------------------------------------------------------------------------------------------------------------------------
-		// Caja Transparente --- Siguiente Práctica
-		// -------------------------------------------------------------------------------------------------------------------------
-		/*glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -70.0f));
-		model = glm::scale(model, glm::vec3(5.0f));
-		staticShader.setMat4("model", model);
-		cubo.Draw(staticShader);
-		glEnable(GL_BLEND);*/
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -695,27 +476,7 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		lightPosition.x++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
 		lightPosition.x--;
-	//agregando el cambio de color
-	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
-		lightColor.x = 0.3;
-		lightColor.y = 0.2;
-		lightColor.z = 0.0;
-	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
-		lightColor.x = 1.0;
-		lightColor.y = 1.0;
-		lightColor.z = 1.0;
 
-	//Car animation
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		animacion ^= true;
-	if (key == GLFW_KEY_R && action == GLFW_PRESS && movAuto_z>=130.0f && estado==5) {
-			movAuto_z = 0.0;
-			estado = 0;
-			animacion = false;
-
-			//se necesita hacer la animación false para que no se quede en un bucle el carro
-		
-	}
 
 	//To play KeyFrame animation 
 	if (key == GLFW_KEY_P && action == GLFW_PRESS)
