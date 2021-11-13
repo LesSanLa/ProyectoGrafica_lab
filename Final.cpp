@@ -1,7 +1,7 @@
 ﻿/*------------------ PROYECTO FINAL ----------------
 	Integrantes:
 				-
-				-
+				- Núñez Trejo Emilio
 				- Sandoval Lara Lesly Mayte
 */
 #include <Windows.h>
