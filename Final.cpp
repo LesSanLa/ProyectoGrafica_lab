@@ -40,7 +40,7 @@ void animate(void);
 // settings
 unsigned int SCR_WIDTH = 800;
 unsigned int SCR_HEIGHT = 600;
-GLFWmonitor *monitors;
+GLFWmonitor* monitors;
 
 void getResolution(void);
 
@@ -55,12 +55,12 @@ bool firstMouse = true;
 const int FPS = 60;
 const int LOOP_TIME = 1000 / FPS; // = 16 milisec // 1000 millisec == 1 sec
 double	deltaTime = 0.0f,
-		lastFrame = 0.0f;
+lastFrame = 0.0f;
 
 //Lighting
 glm::vec3 lightPosition(0.0f, 4.0f, -10.0f);
 //vector que controla la dirrección de mis rayos luminosos
-glm::vec3 lightDirection(1.0f, 0.0f, 0.0f);
+glm::vec3 lightDirection(0.0f, 1.0f, 1.0f);
 //vector para el color de luz puntual
 glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 
@@ -70,31 +70,31 @@ double myVariable = 0.0;
 //float x = 0.0f;
 //float y = 0.0f;
 float	movAuto_x = 0.0f,
-		movAuto_z = 0.0f,
-		movAuto_y = 0.0f,
-		orienta = 0.0f,
-		giroLlantas = 0.0f; //variable para el giro de llantas
+movAuto_z = 0.0f,
+movAuto_y = 0.0f,
+orienta = 0.0f,
+giroLlantas = 0.0f; //variable para el giro de llantas
 
 bool	animacion = false,
-		recorrido1 = true,
-		recorrido2 = false,
-		recorrido3 = false,
-		recorrido4 = false;
+recorrido1 = true,
+recorrido2 = false,
+recorrido3 = false,
+recorrido4 = false;
 
 //variables de estado para la reversa
 int estado = 0; //estado 0 = enfrente, estado = 1 reversa
 
 //Keyframes (Manipulación y dibujo)
 float	posX = 0.0f,
-		posY = 0.0f,
-		posZ = 0.0f,
-		rotRodIzq = 0.0f,
-		giroMonito = 0.0f;
+posY = 0.0f,
+posZ = 0.0f,
+rotRodIzq = 0.0f,
+giroMonito = 0.0f;
 float	incX = 0.0f,
-		incY = 0.0f,
-		incZ = 0.0f,
-		rotInc = 0.0f,
-		giroMonitoInc = 0.0f;
+incY = 0.0f,
+incZ = 0.0f,
+rotInc = 0.0f,
+giroMonitoInc = 0.0f;
 
 #define MAX_FRAMES 9
 int i_max_steps = 60;
@@ -154,9 +154,9 @@ void interpolation(void)
 void animate(void)
 {
 	//aguegando movimiento de luz
-	lightDirection.x = 160.0f * cos(myVariable);
-	lightDirection.y= 160.0f * sin(myVariable);
-	myVariable += 0.05;
+	//lightDirection.x = 160.0f * cos(myVariable);
+	//lightDirection.y = 160.0f * sin(myVariable);
+	//myVariable += 0.05;
 
 	if (play)
 	{
@@ -195,7 +195,7 @@ void animate(void)
 
 void getResolution()
 {
-	const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
 	SCR_WIDTH = mode->width;
 	SCR_HEIGHT = (mode->height) - 80;
@@ -278,7 +278,9 @@ int main()
 	//modelos estaticos
 	Model piso("resources/objects/piso/piso.obj");
 	Model sillonU1("resources/objects/Sillon1/Sillon1.obj");
-	
+	//modelo de la casa
+	Model casaU("resources/objects/CasaUp/CasaUp.obj");
+
 
 	//Inicialización de KeyFrames
 	for (int i = 0; i < MAX_FRAMES; i++)
@@ -334,8 +336,8 @@ int main()
 		//fuente de luz posicional, tiene una pocision dentro del escenario. 
 		//se mueve con teclas M y N por la variable lightPosition
 		staticShader.setVec3("pointLight[0].position", lightPosition);
-		staticShader.setVec3("pointLight[0].ambient", glm::vec3(1.0f, 0.0f, 1.0f));
-		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[0].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[0].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[0].specular", glm::vec3(0.0f, 0.0f, 0.0f));
 		//parametros para afectar la luz porque son de atenuación.
 		//las dos primeras lineas afectan la intensidad de la luz
@@ -357,7 +359,7 @@ int main()
 		//si se agrega otra luz en el shader hay que poner el código de esta pero apagada si no se va usa
 
 		staticShader.setVec3("pointLight[2].position", glm::vec3(-120.0, 0.0f, 0.0f));
-		staticShader.setVec3("pointLight[2].ambient", glm::vec3(1.0f, 0.0f, 0.0f));
+		staticShader.setVec3("pointLight[2].ambient", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[2].diffuse", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setVec3("pointLight[2].specular", glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setFloat("pointLight[2].constant", 1.0f);
@@ -387,7 +389,7 @@ int main()
 		glm::vec3 lightColor = glm::vec3(0.6f);
 		glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
 		glm::vec3 ambientColor = diffuseColor * glm::vec3(0.75f);
-		
+
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
@@ -395,7 +397,7 @@ int main()
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
-		
+
 		//colocando el sillón
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-180.0f, 0.0f, 80.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
@@ -403,13 +405,20 @@ int main()
 		staticShader.setMat4("model", model);
 		sillonU1.Draw(staticShader);
 
-		
 
+		//dibujando piso
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f));
 		model = glm::scale(model, glm::vec3(0.2f));
 		staticShader.setMat4("model", model);
 		piso.Draw(staticShader);
+
+		//dibujando Casa
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		casaU.Draw(staticShader);
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Termina Escenario
@@ -443,7 +452,7 @@ int main()
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
+void my_input(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
