@@ -60,7 +60,7 @@ lastFrame = 0.0f;
 //Lighting
 glm::vec3 lightPosition(0.0f, 4.0f, -10.0f);
 //vector que controla la dirrección de mis rayos luminosos
-glm::vec3 lightDirection(0.0f, 1.0f, 1.0f);
+glm::vec3 lightDirection(0.0f, 0.0f, 1.0f);
 //vector para el color de luz puntual
 glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
 

@@ -156,6 +156,13 @@ Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd AzulTO.jpg
 Ni 1.00
+newmtl lambert23SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd PisoDentro1.jpg
+Ni 1.00
 newmtl up_house:lambert1SG
 illum 4
 Kd 0.00 0.00 0.00
